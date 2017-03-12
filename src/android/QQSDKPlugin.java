@@ -122,8 +122,8 @@ public class QQSDKPlugin extends CordovaPlugin {
 
         @Override public void run() {
           mTencent.login(QQSDKPlugin.this.cordova.getActivity(), "all", loginListener);
-          //					mTencent.loginServerSide(YCQQ.this.cordova.getActivity(), "all",
-          //							loginListener);
+          //          mTencent.loginServerSide(YCQQ.this.cordova.getActivity(), "all",
+          //              loginListener);
         }
       };
       this.cordova.getActivity().runOnUiThread(runnable);
@@ -675,7 +675,8 @@ public class QQSDKPlugin extends CordovaPlugin {
   }
 
   @Override public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-    if (requestCode == Constants.REQUEST_API) {
+    if (requestCode == Constants.REQUEST_LOGIN) {
+      Tencent.onActivityResultData(requestCode, resultCode, intent, loginListener);
       if (resultCode == Constants.REQUEST_LOGIN) {
         Tencent.handleResultData(intent, loginListener);
       }
